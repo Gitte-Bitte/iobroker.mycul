@@ -90,18 +90,18 @@
         "zh-cn": "在启动时检查所有必需的对象是否已存在（Sentry IOBROKER-CUL-C）\n修复Moritz设备崩溃案例（Sentry IOBROKER-CUL-7）"
       }
     },
-    "title": "CUL/culfw",
+    "title": "MyCUL/culfw",
     "titleLang": {
-      "en": "CUL/culfw",
-      "de": "CUL/culfw",
+      "en": "MyCUL/culfw",
+      "de": "MyCUL/culfw",
       "ru": "CUL/культура",
-      "pt": "CUL/culfw",
-      "nl": "CUL/culfw",
-      "fr": "CUL/culfw",
-      "it": "CUL/culf",
-      "es": "CUL/culfw",
+      "pt": "MyCUL/culfw",
+      "nl": "MyCUL/culfw",
+      "fr": "MyCUL/culfw",
+      "it": "MyCUL/culf",
+      "es": "MyCUL/culfw",
       "pl": "KUL/zapas",
-      "zh-cn": "CUL/culfw"
+      "zh-cn": "MyCUL/culfw"
     },
     "desc": {
       "en": "Javascript/Node.js based Busware CUL USB/culfw adapter",
