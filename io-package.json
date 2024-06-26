@@ -124,7 +124,7 @@
     "materialize": true,
     "compact": true,
     "icon": "busware.jpg",
-    "extIcon": "https://raw.githubusercontent.com/Gitte-Bitte/iobroker.mycul/blob/2.8/admin/busware.jpg",
+    "extIcon": "",
     "keywords": [
       "cul",
       "coc",
@@ -138,7 +138,7 @@
       "868",
       "busware"
     ],
-    "readme": "https://github.com/ioBroker/ioBroker.cul/blob/master/README.md",
+    "readme": "",
     "type": "iot-systems",
     "authors": [
       "hobbyquaker <hq@ccu.io>"
