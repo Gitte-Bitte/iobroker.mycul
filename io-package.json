@@ -1,0 +1,287 @@
+{
+  "common": {
+    "name": "cul",
+    "version": "2.2.0",
+    "news": {
+      "2.2.0": {
+        "en": "Select port by ID instead of name as option\nUpdated GUI for admin 6",
+        "de": "Wählen Sie Port per ID anstelle des Namens als Option\nAktualisierte GUI für admin 6",
+        "ru": "Выберите порт ID вместо имени в качестве опции\nОбновлено GUI для admin 6",
+        "pt": "Selecione a porta por ID em vez de nome como opção\nGUI atualizado para admin 6",
+        "nl": "Select port in plaats van naam als optie\nQuality over Quantity (QoQ) Releases Vertaling:",
+        "fr": "Sélectionnez le port par ID au lieu du nom comme option\nActualisé GUI pour admin 6",
+        "it": "Selezionare la porta per ID invece di nome come opzione\nGUI aggiornata per admin 6",
+        "es": "Seleccione el puerto por ID en lugar de nombre como opción\nActualizado GUI para admin 6",
+        "pl": "Wybrany port przez ID zamiast nazwy jako opcja\nAdministrator 6",
+        "uk": "Виберіть порт замість імені замість параметра\nОновлений графічний інтерфейс для адміністратора 6",
+        "zh-cn": "独立港口的名称而不是选择名称\n附录6"
+      },
+      "2.1.0": {
+        "en": "Select port by ID instead of name as option\nUpdated GUI for admin 6",
+        "de": "Wählen Sie Port per ID anstelle des Namens als Option\nAktualisierte GUI für admin 6",
+        "ru": "Выберите порт ID вместо имени в качестве опции\nОбновлено GUI для admin 6",
+        "pt": "Selecione a porta por ID em vez de nome como opção\nGUI atualizado para admin 6",
+        "nl": "Select port in plaats van naam als optie\nQuality over Quantity (QoQ) Releases Vertaling:",
+        "fr": "Sélectionnez le port par ID au lieu du nom comme option\nActualisé GUI pour admin 6",
+        "it": "Selezionare la porta per ID invece di nome come opzione\nGUI aggiornata per admin 6",
+        "es": "Seleccione el puerto por ID en lugar de nombre como opción\nActualizado GUI para admin 6",
+        "pl": "Wybrany port przez ID zamiast nazwy jako opcja\nAdministrator 6",
+        "uk": "Виберіть порт замість імені замість параметра\nОновлений графічний інтерфейс для адміністратора 6",
+        "zh-cn": "独立港口的名称而不是选择名称\n附录6"
+      },
+      "2.0.2": {
+        "en": "IMPORTANT: Nodejs 12.x is now needed at least!\nAdd support for devices with address 0\nUpdated serialport package",
+        "de": "WICHTIG: Nodejs 12.x wird jetzt mindestens benötigt!\nUnterstützung für Geräte mit Adresse 0 hinzugefügt\nSerialport-Paket aktualisiert",
+        "ru": "ВАЖНО: сейчас нужен как минимум Nodejs 12.x!\nДобавить поддержку устройств с адресом 0\nОбновленный пакет последовательного порта",
+        "pt": "IMPORTANTE: Nodejs 12.x agora é pelo menos necessário!\nAdicionar suporte para dispositivos com endereço 0\nPacote de porta serial atualizado",
+        "nl": "BELANGRIJK: Nodejs 12.x is nu in ieder geval nodig!\nOndersteuning toevoegen voor apparaten met adres 0\nBijgewerkt serialport-pakket",
+        "fr": "IMPORTANT : Nodejs 12.x est maintenant nécessaire au minimum !\nAjouter la prise en charge des appareils avec l'adresse 0\nPaquet de port série mis à jour",
+        "it": "IMPORTANTE: ora è necessario almeno Nodejs 12.x!\nAggiungi il supporto per i dispositivi con indirizzo 0\nPacchetto porta seriale aggiornato",
+        "es": "IMPORTANTE: ¡Ahora se necesita al menos Nodejs 12.x!\nAgregar soporte para dispositivos con dirección 0\nPaquete de puerto serie actualizado",
+        "pl": "WAŻNE: Nodejs 12.x jest teraz potrzebny przynajmniej!\nDodaj wsparcie dla urządzeń z adresem 0\nZaktualizowany pakiet portu szeregowego",
+        "zh-cn": "重要提示：现在至少需要 Nodejs 12.x！\n添加对地址为 0 的设备的支持\n更新了串口包"
+      },
+      "1.3.5": {
+        "en": "Make sure that cul is connected before accepting state changes (Sentry IOBROKER-CUL-R)",
+        "de": "Stellen Sie sicher, dass cul verbunden ist, bevor Sie Statusänderungen akzeptieren (Sentry IOBROKER-CUL-R).",
+        "ru": "Перед принятием изменений состояния убедитесь, что cul подключен (Sentry IOBROKER-CUL-R)",
+        "pt": "Certifique-se de que cul está conectado antes de aceitar as mudanças de estado (Sentry IOBROKER-CUL-R)",
+        "nl": "Zorg ervoor dat cul is verbonden voordat u statuswijzigingen accepteert (Sentry IOBROKER-CUL-R)",
+        "fr": "Assurez-vous que cul est connecté avant d'accepter les changements d'état (Sentry IOBROKER-CUL-R)",
+        "it": "Assicurati che cul sia connesso prima di accettare i cambiamenti di stato (Sentry IOBROKER-CUL-R)",
+        "es": "Asegúrese de que cul esté conectado antes de aceptar cambios de estado (Sentry IOBROKER-CUL-R)",
+        "pl": "Upewnij się, że cul jest podłączony przed zaakceptowaniem zmian stanu (Sentry IOBROKER-CUL-R)",
+        "zh-cn": "在接受状态更改之前，请确保已连接cul（Sentry IOBROKER-CUL-R）"
+      },
+      "1.3.4": {
+        "en": "prevent crash case (Sentry IOBROKER-CUL-D)",
+        "de": "Absturz verhindern (Sentry IOBROKER-CUL-D)",
+        "ru": "случай предотвращения сбоя (Sentry IOBROKER-CUL-D)",
+        "pt": "evitar caso de travamento (Sentry IOBROKER-CUL-D)",
+        "nl": "crashgeval voorkomen (Sentry IOBROKER-CUL-D)",
+        "fr": "éviter les cas de crash (Sentry IOBROKER-CUL-D)",
+        "it": "prevenire crash case (Sentry IOBROKER-CUL-D)",
+        "es": "prevenir caso de accidente (Sentry IOBROKER-CUL-D)",
+        "pl": "zapobiegaj awariom (Sentry IOBROKER-CUL-D)",
+        "zh-cn": "防止发生崩溃情况（Sentry IOBROKER-CUL-D）"
+      },
+      "1.3.3": {
+        "en": "Added raw command support with cul.write()",
+        "de": "Unterstützung für Raw-Befehle mit cul.write () hinzugefügt",
+        "ru": "Добавлена поддержка необработанных команд с cul.write ()",
+        "pt": "Adicionado suporte de comando bruto com cul.write ()",
+        "nl": "Ondersteuning voor onbewerkte opdrachten toegevoegd met cul.write ()",
+        "fr": "Ajout de la prise en charge des commandes brutes avec cul.write ()",
+        "it": "Aggiunto supporto per comandi grezzi con cul.write ()",
+        "es": "Se agregó soporte de comando sin procesar con cul.write ()",
+        "pl": "Dodano obsługę surowych poleceń z cul.write ()",
+        "zh-cn": "使用cul.write（）添加了原始命令支持"
+      },
+      "1.3.2": {
+        "en": "check that all needed objects are existing on start (Sentry IOBROKER-CUL-C)\nfix Moritz device crash case (Sentry IOBROKER-CUL-7)",
+        "de": "Überprüfen Sie, ob beim Start alle benötigten Objekte vorhanden sind (Sentry IOBROKER-CUL-C).\nBehebung des Absturzfalls des Moritz-Geräts (Sentry IOBROKER-CUL-7)",
+        "ru": "проверьте наличие всех необходимых объектов при запуске (Sentry IOBROKER-CUL-C)\nисправить случай аварии устройства Морица (Sentry IOBROKER-CUL-7)",
+        "pt": "verifique se todos os objetos necessários existem no início (Sentry IOBROKER-CUL-C)\ncorrigir caso de falha do dispositivo Moritz (Sentry IOBROKER-CUL-7)",
+        "nl": "controleer of alle benodigde objecten aanwezig zijn bij het starten (Sentry IOBROKER-CUL-C)\ncrash-geval van Moritz-apparaat repareren (Sentry IOBROKER-CUL-7)",
+        "fr": "vérifier que tous les objets nécessaires existent au démarrage (Sentry IOBROKER-CUL-C)\ncorrection du cas de crash de l'appareil Moritz (Sentry IOBROKER-CUL-7)",
+        "it": "verificare che tutti gli oggetti necessari siano presenti all'avvio (Sentry IOBROKER-CUL-C)\nrisolto il crash del dispositivo Moritz (Sentry IOBROKER-CUL-7)",
+        "es": "compruebe que todos los objetos necesarios existan al inicio (Sentry IOBROKER-CUL-C)\narreglar caso de falla del dispositivo Moritz (Sentry IOBROKER-CUL-7)",
+        "pl": "sprawdź, czy wszystkie potrzebne obiekty istnieją na starcie (Sentry IOBROKER-CUL-C)\nnaprawa awarii urządzenia Moritz (Sentry IOBROKER-CUL-7)",
+        "zh-cn": "在启动时检查所有必需的对象是否已存在（Sentry IOBROKER-CUL-C）\n修复Moritz设备崩溃案例（Sentry IOBROKER-CUL-7）"
+      }
+    },
+    "title": "CUL/culfw",
+    "titleLang": {
+      "en": "CUL/culfw",
+      "de": "CUL/culfw",
+      "ru": "CUL/культура",
+      "pt": "CUL/culfw",
+      "nl": "CUL/culfw",
+      "fr": "CUL/culfw",
+      "it": "CUL/culf",
+      "es": "CUL/culfw",
+      "pl": "KUL/zapas",
+      "zh-cn": "CUL/culfw"
+    },
+    "desc": {
+      "en": "Javascript/Node.js based Busware CUL USB/culfw adapter",
+      "de": "Javascript/Node.js basierter Busware CUL USB/Culfw Adapter",
+      "ru": "Адаптер Busware CUL USB/culfw",
+      "pt": "Adaptador Bus/CUL USB/culfw baseado em Javascript/Node.js",
+      "nl": "Op Javascript/Node.js gebaseerde Busware CUL USB/culfw-adapter",
+      "fr": "Adaptateur USB/culfw Busware CUL basé sur Javascript/Node.js",
+      "it": "Adattatore Bus/Culfw CUL basato su Javascript/Node.js",
+      "es": "Adaptador USB/culfw Busware CUL basado en Javascript/Node.js",
+      "pl": "Adapter Busware CUL USB/culfw oparty na Javascript/Node.js",
+      "zh-cn": "基于Javascript/Node.js的Busware CUL USB/culfw适配器"
+    },
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "loglevel": "info",
+    "license": "GPL-2.0-or-later",
+    "enabled": true,
+    "messagebox": true,
+    "materialize": true,
+    "compact": true,
+    "icon": "busware.jpg",
+    "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.cul/master/admin/busware.jpg",
+    "keywords": [
+      "cul",
+      "coc",
+      "cuno",
+      "FS20",
+      "MAX!",
+      "HMS",
+      "FHT",
+      "EM",
+      "ELV",
+      "868",
+      "busware"
+    ],
+    "readme": "https://github.com/ioBroker/ioBroker.cul/blob/master/README.md",
+    "type": "iot-systems",
+    "authors": [
+      "hobbyquaker <hq@ccu.io>"
+    ],
+    "dependencies": [
+      {
+        "js-controller": ">=2.0.0"
+      }
+    ],
+    "adminUI": {
+      "config": "json"
+    },
+    "plugins": {
+      "sentry": {
+        "dsn": "https://1df51a90ee094b88983dc43d700a5066@sentry.iobroker.net/89"
+      }
+    },
+    "connectionType": "local",
+    "dataSource": "push",
+    "tier": 2
+  },
+  "native": {
+    "serialport": "",
+    "baudrate": 9600,
+    "mode": "SlowRF",
+    "type": "cul",
+    "ip": "127.0.0.1",
+    "port": "23"
+  },
+  "objects": [
+    {
+      "_id": "_design/cul",
+      "language": "javascript",
+      "type": "design",
+      "views": {
+        "devices": {
+          "map": "function(doc) {\n  if (doc.type == 'device' && doc._id.slice(0, 4) == 'cul') {\n   emit(doc._id, doc);\n  }\n}"
+        }
+      }
+    },
+    {
+      "_id": "cul.meta.roles",
+      "parent": "cul",
+      "type": "meta",
+      "meta": {
+        "type": "roles",
+        "adapter": "cul"
+      },
+      "common": {},
+      "native": {
+        "cmd": {
+          "type": "number",
+          "read": true,
+          "write": false,
+          "role": "state"
+        },
+        "bidirectional": {
+          "type": "boolean",
+          "read": true,
+          "write": false,
+          "role": "indicator"
+        },
+        "extended": {
+          "type": "boolean",
+          "read": true,
+          "write": false,
+          "role": "indicator"
+        },
+        "response": {
+          "type": "boolean",
+          "read": true,
+          "write": false,
+          "role": "indicator"
+        },
+        "temperature": {
+          "type": "number",
+          "unit": "°C",
+          "read": true,
+          "write": false,
+          "role": "value.temperature"
+        },
+        "humidity": {
+          "type": "number",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "read": true,
+          "write": false,
+          "role": "value.humidity"
+        },
+        "battery": {
+          "type": "number",
+          "list": [
+            "ok",
+            "empty",
+            "replaced"
+          ],
+          "read": true,
+          "write": false,
+          "role": "indicator"
+        },
+        "undefined": {
+          "type": "string",
+          "read": true,
+          "write": false,
+          "role": "state"
+        }
+      }
+    }
+  ],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "If connected to CUL",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.rawData",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "raw data",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    }
+  ]
+}
