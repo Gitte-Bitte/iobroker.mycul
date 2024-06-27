@@ -363,7 +363,9 @@ function connect(callback) {
         adapter.log.error('Error on Cul connection: ' +  err));
 
     cul.on('data', (raw, obj) => {
-        adapter.log.debug(`RAW: ${raw}, ${JSON.stringify(obj)}`);
+        adapter.log.debug(`typeof:`+typeof(raw));
+        adapter.log.debug(`RAW: ${raw}`);
+        adapter.log.debug(`obj: ${JSON.stringify(obj)}`);
         adapter.setState('info.rawData', raw, true);
         adapter.log.debug(`RAW[0]: ${raw[0]}, ${JSON.stringify(raw[0])}`);
         obj.protocol="myProt";
