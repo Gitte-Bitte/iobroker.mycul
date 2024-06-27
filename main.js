@@ -78,6 +78,9 @@ function startAdapter(options) {
 
     adapter.on('ready', () => {
 
+        adapter.log.debug(`process.env.DEBUG : ${JSON.stringify(process.env.DEBUG)}`);
+
+
         try {
             SerialPort = require('serialport').SerialPort;
         } catch (err) {
@@ -362,6 +365,13 @@ function connect(callback) {
     cul.on('data', (raw, obj) => {
         adapter.log.debug(`RAW: ${raw}, ${JSON.stringify(obj)}`);
         adapter.setState('info.rawData', raw, true);
+        adapter.log.debug(`RAW[0]: ${raw[0]}, ${JSON.stringify(raw[0])}`);
+        obj.protocol="myProt";
+        obj.address=1234;
+        obj.device="device";
+        obj.data.eins="eins";
+        obj.data.zwei="zwei";
+        
 
         if (!obj || !obj.protocol || (!obj.address && obj.address !== 0)) {
             return;
