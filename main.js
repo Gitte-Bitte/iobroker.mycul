@@ -371,6 +371,7 @@ function connect(callback) {
         obj.protocol="myProt";
         obj.address=1234;
         obj.device="device";
+        
         //obj.data.eins="eins";
         //obj.data.zwei="zwei";
         
