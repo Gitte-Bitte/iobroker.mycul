@@ -385,7 +385,7 @@ K1145525828, {
       obj.protocol = 'myProt'
       obj.address = 1234
       obj.device = 'device'
-      obj.data= { temperature: 24.5, humidity: 58.5 };
+     // obj.data= { temperature: 24.5, humidity: 58.5 };
   
   
       //obj.data.eins="eins";
