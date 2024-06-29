@@ -469,13 +469,13 @@ function connect (callback) {
         obj.protocol = 'NS_WC'
         obj.address = id_nr
         obj.device = 'TCM79001'
-        obj.data.batbit = batbit.toString()
-        obj.data.mode = mode.toString()
-        obj.data.channel = channel.toString()
+        obj.data.battery = batbit
+        obj.data.mode = mode
+        obj.data.channel = channel
         obj.data.temperature = temperature
         obj.data.humidity = humidity
         obj.data.abs_humidity = af
-        obj.data.tp=tp;
+        obj.data.dewpoint=tp;
         obj.data.trivia = 'n.a.'
       }
     }

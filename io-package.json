@@ -170,26 +170,38 @@
   },
   "objects": [
     {
-      "_id": "_design/cul",
+      "_id": "_design/mycul",
       "language": "javascript",
       "type": "design",
       "views": {
         "devices": {
-          "map": "function(doc) {\n  if (doc.type == 'device' && doc._id.slice(0, 4) == 'cul') {\n   emit(doc._id, doc);\n  }\n}"
+          "map": "function(doc) {\n  if (doc.type == 'device' && doc._id.slice(0, 4) == 'mycul') {\n   emit(doc._id, doc);\n  }\n}"
         }
       }
     },
     {
-      "_id": "cul.meta.roles",
-      "parent": "cul",
+      "_id": "mycul.meta.roles",
+      "parent": "mycul",
       "type": "meta",
       "meta": {
         "type": "roles",
-        "adapter": "cul"
+        "adapter": "mycul"
       },
       "common": {},
       "native": {
         "cmd": {
+          "type": "number",
+          "read": true,
+          "write": false,
+          "role": "state"
+        },
+        "channel": {
+          "type": "number",
+          "read": true,
+          "write": false,
+          "role": "state"
+        },
+        "mode": {
           "type": "number",
           "read": true,
           "write": false,
@@ -220,7 +232,23 @@
           "write": false,
           "role": "value.temperature"
         },
+        "dewpoint": {
+          "type": "number",
+          "unit": "°C",
+          "read": true,
+          "write": false,
+          "role": "value.temperature"
+        },
         "humidity": {
+          "type": "number",
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "read": true,
+          "write": false,
+          "role": "value.humidity"
+        },
+        "abs_humidity": {
           "type": "number",
           "unit": "%",
           "min": 0,
