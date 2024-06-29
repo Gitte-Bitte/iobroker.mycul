@@ -250,12 +250,12 @@
         },
         "abs_humidity": {
           "type": "number",
-          "unit": "%",
+          "unit": "g/m3",
           "min": 0,
           "max": 100,
           "read": true,
           "write": false,
-          "role": "value.humidity"
+          "role": "value"
         },
         "battery": {
           "type": "number",

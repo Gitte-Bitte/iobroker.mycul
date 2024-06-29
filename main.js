@@ -433,9 +433,6 @@ function connect (callback) {
     adapter.log.debug(`obj: ${JSON.stringify(obj)}`)
     adapter.setState('info.rawData', raw, true)
     adapter.log.debug(`RAW[0]: ${raw[0]}, ${JSON.stringify(raw[0])}`)
-    obj.protocol = 'myProt'
-    obj.address = 1234
-    obj.device = 'device'
     obj.data = {}
 
     adapter.log.debug(`obj: ${JSON.stringify(obj)}`)
@@ -474,8 +471,8 @@ function connect (callback) {
         obj.data.channel = channel
         obj.data.temperature = temperature
         obj.data.humidity = humidity
-        obj.data.abs_humidity = af
-        obj.data.dewpoint=tp;
+        obj.data.abs_humidity = parseFloat(af.toFixed(1))
+        obj.data.dewpoint=parseFloat(tp.toFixed(1));
         obj.data.trivia = 'n.a.'
       }
     }
