@@ -463,7 +463,7 @@ function connect (callback) {
         adapter.log.debug(`humidity:` + humidity)
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
         obj.protocol='NS_WC';
-        obj.adress=id_nr;
+        obj.address=id_nr;
         obj.device='TCM79001';
         obj.data.batbit=batbit;
         obj.data.mode=mode;
