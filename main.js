@@ -442,16 +442,16 @@ function connect (callback) {
 
     if (raw[0] == 's') {
       if (raw[1] == '5') {
-        id_nr = raw[2] + raw[3]
-        batbit = (parseInt(raw[4], 16) & 0x8) >> 3
-        mode = (parseInt(raw[4]) & 0x4) >> 2
-        channel = (parseInt(raw[4], 16) & 0x3) + 1
-        temperature = parseInt(raw[5] + raw[6] + raw[7], 16) & 0x7fff
+        let id_nr = raw[2] + raw[3]
+        let batbit = (parseInt(raw[4], 16) & 0x8) >> 3
+        let mode = (parseInt(raw[4]) & 0x4) >> 2
+        let channel = (parseInt(raw[4], 16) & 0x3) + 1
+        let temperature = parseInt(raw[5] + raw[6] + raw[7], 16) & 0x7fff
         if ((raw[5] & 0x8) == 0x8) {
           temperature = temperature - 2048
         }
         temperature = temperature / 10
-        humidity = parseInt(raw[8] + raw[9]) & 0x7f
+        let humidity = parseInt(raw[8] + raw[9]) & 0x7f
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
       }
     }
