@@ -501,6 +501,8 @@ function connect (callback) {
         },
         native: tmp
       }
+      adapter.log.debug(`metaRoles: ${JSON.stringify(metaRoles)}`)
+
       for (const _state in obj.data) {
         if (!obj.data.hasOwnProperty(_state)) continue
         let common
