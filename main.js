@@ -463,6 +463,8 @@ function connect (callback) {
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
         let af = AF_1(humidity, temperature, false)
         adapter.log.debug(`AF:` + af)
+        let tp = TD(humidity, temperature, false)
+        adapter.log.debug(`TD:` + tp)
 
         obj.protocol = 'NS_WC'
         obj.address = id_nr
@@ -597,7 +599,7 @@ function get_a_b (temp, ice) {
 //SDD(T) = 6.1078 * 10^((a*T)/(b+T))
 function SDD (temp, ice) {
   let parameter = get_a_b(temp, ice)
-  return (6.1078 * (10 ^ ((parameter.a * temp) / (parameter.b + temp))))
+  return 6.1078 * (10 ^ ((parameter.a * temp) / (parameter.b + temp)))
 }
 
 //DD = Dampfdruck in hPa
