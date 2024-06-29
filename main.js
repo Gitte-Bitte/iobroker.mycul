@@ -23,76 +23,6 @@ try {
   console.warn('Net is not available')
 }
 
-
-
-//Parameter
-function get_a_b (temp, ice) {
-  let res = {}
-  if (temp >= 0) {
-    res.a = 7.5
-    res.b = 237.3
-  } else {
-    if (ice) {
-      res.a = 9.5
-      res.b = 265.5
-    } else {
-      res.a = 7.6
-      res.b = 240.7
-    }
-  }
-  return res
-}
-
-//Sättigungsdampfdruck
-//SDD(T) = 6.1078 * 10^((a*T)/(b+T))
-function SDD (temp, ice) {
-  parameter = get_a_b(temp, ice)
-  return (6.1078 * 10) ^ ((parameter.a * temp) / (parameter.b + temp))
-}
-
-//DD = Dampfdruck in hPa
-//DD(r,T) = r/100 * SDD(T)
-function DD (hum, temp, ice) {
-  return (hum / 100) * SDD(temp, ice)
-}
-
-//weiss nicht
-//v(r,T) = log10(DD(r,T)/6.1078)
-function v (hum, temp, ice) {
-  return Math.log10(DD(hum, temp, ice) / 6.1078)
-}
-
-//TD = Taupunkttemperatur in °C
-//TD(r,T) = b*v/(a-v) mit v(r,T) = log10(DD(r,T)/6.1078)
-function TD (hum, temp, ice) {
-  parameter = get_a_b(temp, ice)
-  return (parameter.b * v(hum, temp, ice)) / (parameter.a - v(hum, temp, ice))
-}
-
-function TK (temp) {
-  return temp + 273.15
-}
-
-//R* = 8314.3 J/(kmol*K) (universelle Gaskonstante)
-let R = 8314.3
-//mw = 18.016 kg/kmol (Molekulargewicht des Wasserdampfes)
-let mw = 18.016
-//AF = absolute Feuchte in g Wasserdampf pro m3 Luft
-//AF(r,TK) = 10^5 * mw/R* * DD(r,T)/TK; AF(TD,TK) = 10^5 * mw/R* * SDD(TD)/TK
-
-function AF_1 (hum, temp, ice) {
-  return 10 ^ ((((5 * mw) / R) * DD(hum, temp, ice)) / TK(temp))
-}
-
-function AF_2 (hum, temp, ice) {
-  10 ^ ((((5 * mw) / R) * SDD(TD(hum, temp, ice))) / TK(temp))
-}
-
-
-
-
-
-
 let adapter
 
 function startAdapter (options) {
@@ -645,6 +575,71 @@ function main () {
   })
 }
 
+//Parameter
+function get_a_b (temp, ice) {
+  let res = {}
+  if (temp >= 0) {
+    res.a = 7.5
+    res.b = 237.3
+  } else {
+    if (ice) {
+      res.a = 9.5
+      res.b = 265.5
+    } else {
+      res.a = 7.6
+      res.b = 240.7
+    }
+  }
+  return res
+}
+
+//Sättigungsdampfdruck
+//SDD(T) = 6.1078 * 10^((a*T)/(b+T))
+function SDD (temp, ice) {
+  parameter = get_a_b(temp, ice)
+  return (6.1078 * 10) ^ ((parameter.a * temp) / (parameter.b + temp))
+}
+
+//DD = Dampfdruck in hPa
+//DD(r,T) = r/100 * SDD(T)
+function DD (hum, temp, ice) {
+  return (hum / 100) * SDD(temp, ice)
+}
+
+//weiss nicht
+//v(r,T) = log10(DD(r,T)/6.1078)
+function v (hum, temp, ice) {
+  return Math.log10(DD(hum, temp, ice) / 6.1078)
+}
+
+//TD = Taupunkttemperatur in °C
+//TD(r,T) = b*v/(a-v) mit v(r,T) = log10(DD(r,T)/6.1078)
+function TD (hum, temp, ice) {
+  parameter = get_a_b(temp, ice)
+  return (parameter.b * v(hum, temp, ice)) / (parameter.a - v(hum, temp, ice))
+}
+
+function TK (temp) {
+  return temp + 273.15
+}
+
+//R* = 8314.3 J/(kmol*K) (universelle Gaskonstante)
+let R = 8314.3
+//mw = 18.016 kg/kmol (Molekulargewicht des Wasserdampfes)
+let mw = 18.016
+//AF = absolute Feuchte in g Wasserdampf pro m3 Luft
+//AF(r,TK) = 10^5 * mw/R* * DD(r,T)/TK; AF(TD,TK) = 10^5 * mw/R* * SDD(TD)/TK
+
+function AF_1 (hum, temp, ice) {
+  // return 10 ^ ((((5 * mw) / R) * DD(hum, temp, ice)) / TK(temp))
+  adapter.log.debug(`mw:` + mw)
+  adapter.log.debug(`R:` + R)
+  return 6
+}
+
+function AF_2 (hum, temp, ice) {
+  10 ^ ((((5 * mw) / R) * SDD(TD(hum, temp, ice))) / TK(temp))
+}
 
 // If started as allInOne/compact mode => return function to create instance
 if (module && module.parent) {
