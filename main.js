@@ -436,11 +436,31 @@ function connect (callback) {
     obj.protocol = 'myProt'
     obj.address = 1234
     obj.device = 'device'
-    obj.data= { temperature: 24.5, humidity: 58.5 };
+    obj.data = { temperature: 24.5, humidity: 58.5 }
 
-    //obj.data.eins="eins";
-    //obj.data.zwei="zwei";
     adapter.log.debug(`obj: ${JSON.stringify(obj)}`)
+
+    if (raw[0] == 's') {
+      if (raw[1] == '5') {
+        id = raw[2] + raw[3]
+        batbit = (parseInt(raw[4], 16) & 0x8) >> 3
+        mode = (parseInt(raw[4]) & 0x4) >> 2
+        channel = (parseInt(raw[4], 16) & 0x3) + 1
+        temperature = parseInt(raw[5] + raw[6] + raw[7], 16) & 0x7fff
+        if ((raw[5] & 0x8) == 0x8) {
+          temperature = temperature - 2048
+        }
+        temperature = temperature / 10
+        humidity = parseInt(raw[8] + raw[9]) & 0x7f
+        //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
+      }
+    }
+    adapter.log.debug(`temperature:` + temperature)
+    adapter.log.debug(`humidity:` + humidity)
+    adapter.log.debug(`channel:` + channel)
+    adapter.log.debug(`batbit:` + batbit)
+    adapter.log.debug(`mode:` + mode)
+    adapter.log.debug(`id:` + id)
 
     if (!obj || !obj.protocol || (!obj.address && obj.address !== 0)) {
       return
@@ -545,3 +565,36 @@ if (module && module.parent) {
   // or start the instance directly
   startAdapter()
 }
+
+/*
+
+
+  //https://github.com/hobbyquaker/cul
+
+K1145525828, {
+    protocol: 'WS',
+    address: 1,
+    device: 'S300TH',
+    rssi: -28,
+    data: { temperature: 24.5, humidity: 58.5 },
+}
+}
+
+
+   # Implementation from Femduino
+      # Protocol prologue start everytime with 0101
+      # PEARL NC7159, LogiLink WS0002
+      #                 /--------------------------------- Sensdortype      
+      #                /     / ---------------------------- ID, changes after every battery change      
+      #               /     /          /--------------------- Battery state 1 == Ok
+      #              /     /          /  / ------------------ forced send      
+      #             /     /          /  /  / ---------------- Channel (0..2)      
+      #            /     /          /  /  /   / -------------- neg Temp: if 1 then temp = temp - 2048
+      #           /     /          /  /  /   /   / ----------- Temp
+      #          /     /          /  /  /   /   /             /-- unknown
+      #         /     /          /  /  /   /   /             /  / Humidity
+      #         0101  0010 1001  0 0 00   0 010 0011 0000   1 101 1101
+      # Bit     0     4         12 13 14  16 17            28 29    36
+
+
+*/
