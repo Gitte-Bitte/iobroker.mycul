@@ -443,24 +443,24 @@ function connect (callback) {
     if (raw[0] == 's') {
       if (raw[1] == '5') {
         let id_nr = raw[2] + raw[3]
+        adapter.log.debug(`id_nr:` + id_nr)
         let batbit = (parseInt(raw[4], 16) & 0x8) >> 3
+        adapter.log.debug(`batbit:` + batbit)
         let mode = (parseInt(raw[4]) & 0x4) >> 2
+        adapter.log.debug(`mode:` + mode)
         let channel = (parseInt(raw[4], 16) & 0x3) + 1
+        adapter.log.debug(`channel:` + channel)
         let temperature = parseInt(raw[5] + raw[6] + raw[7], 16) & 0x7fff
         if ((raw[5] & 0x8) == 0x8) {
           temperature = temperature - 2048
         }
         temperature = temperature / 10
+        adapter.log.debug(`temperature:` + temperature)
         let humidity = parseInt(raw[8] + raw[9]) & 0x7f
+        adapter.log.debug(`humidity:` + humidity)
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
       }
     }
-    adapter.log.debug(`temperature:` + temperature)
-    adapter.log.debug(`humidity:` + humidity)
-    adapter.log.debug(`channel:` + channel)
-    adapter.log.debug(`batbit:` + batbit)
-    adapter.log.debug(`mode:` + mode)
-    adapter.log.debug(`id_nr:` + id_nr)
 
     if (!obj || !obj.protocol || (!obj.address && obj.address !== 0)) {
       return
