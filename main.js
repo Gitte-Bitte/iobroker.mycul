@@ -442,7 +442,7 @@ function connect (callback) {
 
     if (raw[0] == 's') {
       if (raw[1] == '5') {
-        id = raw[2] + raw[3]
+        id_nr = raw[2] + raw[3]
         batbit = (parseInt(raw[4], 16) & 0x8) >> 3
         mode = (parseInt(raw[4]) & 0x4) >> 2
         channel = (parseInt(raw[4], 16) & 0x3) + 1
@@ -460,7 +460,7 @@ function connect (callback) {
     adapter.log.debug(`channel:` + channel)
     adapter.log.debug(`batbit:` + batbit)
     adapter.log.debug(`mode:` + mode)
-    adapter.log.debug(`id:` + id)
+    adapter.log.debug(`id_nr:` + id_nr)
 
     if (!obj || !obj.protocol || (!obj.address && obj.address !== 0)) {
       return
