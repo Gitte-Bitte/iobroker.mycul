@@ -473,6 +473,9 @@ function connect (callback) {
       }
     }
 
+    adapter.log.debug(`obj: ${JSON.stringify(obj)}`)
+
+
     if (!obj || !obj.protocol || (!obj.address && obj.address !== 0)) {
       return
     }
