@@ -461,12 +461,10 @@ function connect (callback) {
         let humidity = parseInt(raw[8] + raw[9], 16) & 0x7f
         adapter.log.debug(`humidity:` + humidity)
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
-        let af = AF_1(humidity, temperature, false)
+        let af = absHumidity(temperature, humidity)
         adapter.log.debug(`AF:` + af)
-        let af2 = AF_2(humidity, temperature, false)
-        adapter.log.debug(`AF2:` + af2)
-        let tp = TD(humidity, temperature, false)
-        adapter.log.debug(`TD:` + tp)
+        let tp = RHtoDP(temperature, humidity)
+        adapter.log.debug(`tp:` + tp)
 
         obj.protocol = 'NS_WC'
         obj.address = id_nr
@@ -477,6 +475,7 @@ function connect (callback) {
         obj.data.temperature = temperature
         obj.data.humidity = humidity
         obj.data.abs_humidity = af
+        obj.data.tp = tp
         obj.data.trivia = 'n.a.'
       }
     }
@@ -579,66 +578,69 @@ function main () {
   })
 }
 
-//Parameter
-function get_a_b (temp, ice) {
-  let res = {}
-  if (temp >= 0) {
-    res.a = 7.5
-    res.b = 237.3
-  } else {
-    if (ice) {
-      res.a = 9.5
-      res.b = 265.5
-    } else {
-      res.a = 7.6
-      res.b = 240.7
-    }
-  }
-  return res
-}
 //Sättigungsdampfdruck
 //SDD(T) = 6.1078 * 10^((a*T)/(b+T))
-function SDD (temp, ice) {
-  let parameter = get_a_b(temp, ice)
-  return 6.1078 * (10 ^ ((parameter.a * temp) / (parameter.b + temp)))
+function SDD (T) {
+  let a, b
+  if (T >= 0) {
+    // Sättigungsdampfdruck über Wasser
+    a = 7.5
+    b = 237.3
+  } else {
+    a = 7.6
+    b = 240.7
+  }
+
+  let sdd = 6.1078 * Math.exp((a * T) / (b + T) / Math.LOG10E)
+
+  return sdd
 }
 
 //DD = Dampfdruck in hPa
 //DD(r,T) = r/100 * SDD(T)
-function DD (hum, temp, ice) {
-  return ((hum / 100) * SDD(temp, ice))
+function DD (T, r) {
+  let sdd = SDD(T)
+  let dd = (r / 100) * sdd
+
+  return dd
 }
 
-//weiss nicht
-//v(r,T) = log10(DD(r,T)/6.1078)
-function v (hum, temp, ice) {
-  return Math.log10(DD(hum, temp, ice) / 6.1078)
+function RHtoDP (T, r) {
+  let dd = DD(T, r)
+  let a, b
+
+  if (T >= 0) {
+    a = 7.5
+    b = 237.3
+  } else {
+    a = 7.6
+    b = 240.7
+  }
+
+  let c = Math.log(dd / 6.1078) * Math.LOG10E
+
+  let dewpoint = (b * c) / (a - c)
+
+  return dewpoint
 }
 
-//TD = Taupunkttemperatur in °C
-//TD(r,T) = b*v/(a-v) mit v(r,T) = log10(DD(r,T)/6.1078)
-function TD (hum, temp, ice) {
-  let parameter = get_a_b(temp, ice)
-  return (parameter.b * v(hum, temp, ice) / (parameter.a - v(hum, temp, ice)))
+function DPtoRH (T, TD) {
+  let dd = SDD(TD)
+  let sdd = SDD(T)
+
+  return 100 * (dd / sdd)
 }
 
-function TK (temp) {
+function absHumidity (Temperatur, humidity) {
+  let mw = 18.016
+  let RStern = 8314.3
+  let dd = 100 * DD(Temperatur, humidity)
+  let absFeuchte = 1000 * (mw / RStern) * (dd / CelsiusToKelvin(Temperatur))
+  return absFeuchte
+}
+
+function CelsiusToKelvin (T) {
   return temp + 273.15
-}
-
-//R* = 8314.3 J/(kmol*K) (universelle Gaskonstante)
-let R = 8314.3
-//mw = 18.016 kg/kmol (Molekulargewicht des Wasserdampfes)
-let mw = 18.016
-//AF = absolute Feuchte in g Wasserdampf pro m3 Luft
-//AF(r,TK) = 10^5 * mw/R* * DD(r,T)/TK; AF(TD,TK) = 10^5 * mw/R* * SDD(TD)/TK
-
-function AF_1 (hum, temp, ice) {
-  return ((10 ^ 5) * (mw/ R) * (DD(hum, temp, ice) / TK(temp)))
-}
-
-function AF_2 (hum, temp, ice) {
-  return ((10 ^ 5) * (mw/ R) * (SDD(TD(hum, temp, ice), ice) / TK(temp)))
 }
 
 // If started as allInOne/compact mode => return function to create instance
