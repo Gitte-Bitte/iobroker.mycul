@@ -631,26 +631,15 @@ let mw = 18.016
 //AF(r,TK) = 10^5 * mw/R* * DD(r,T)/TK; AF(TD,TK) = 10^5 * mw/R* * SDD(TD)/TK
 
 function AF_1 (hum, temp, ice) {
-  // return 10 ^ ((((5 * mw) / R) * DD(hum, temp, ice)) / TK(temp))
-  adapter.log.debug(`mw:` + mw)
-  adapter.log.debug(`R:` + R)
   adapter.log.debug(`hum:` + hum)
-  adapter.log.debug(`hum:` + typeof hum)
   adapter.log.debug(`temp:` + temp)
-  adapter.log.debug(`temp:` + typeof temp)
-  adapter.log.debug(`ice:` + ice)
-  adapter.log.debug(`ice:` + typeof ice)
-  adapter.log.debug(`TK:` + TK(temp))
-  adapter.log.debug(`a_b:` + JSON.stringify(get_a_b(temp, false)))
-
   adapter.log.debug(`SDD:` + SDD(temp, ice))
   //adapter.log.debug(`DD:` + DD(hum,temp,ice))
-
-  return 6
+  return ((((10 ^ 5) * mw) / R) * DD(hum, temp, ice)) / TK(temp)
 }
 
 function AF_2 (hum, temp, ice) {
-  10 ^ ((((5 * mw) / R) * SDD(TD(hum, temp, ice))) / TK(temp))
+  return ((((10 ^ 5) * mw) / R) * SDD(TD(hum, temp, ice), ice)) / TK(temp)
 }
 
 // If started as allInOne/compact mode => return function to create instance
