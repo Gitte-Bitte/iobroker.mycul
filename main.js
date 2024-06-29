@@ -596,9 +596,8 @@ function get_a_b (temp, ice) {
 //Sättigungsdampfdruck
 //SDD(T) = 6.1078 * 10^((a*T)/(b+T))
 function SDD (temp, ice) {
-  //parameter = get_a_b(temp, ice)
-  //  return (6.1078 * 10) ^ ((parameter.a * temp) / (parameter.b + temp))
-  return 4
+  let parameter = get_a_b(temp, ice)
+  return (6.1078 * 10) ^ ((parameter.a * temp) / (parameter.b + temp))
 }
 
 //DD = Dampfdruck in hPa
@@ -616,7 +615,7 @@ function v (hum, temp, ice) {
 //TD = Taupunkttemperatur in °C
 //TD(r,T) = b*v/(a-v) mit v(r,T) = log10(DD(r,T)/6.1078)
 function TD (hum, temp, ice) {
-  parameter = get_a_b(temp, ice)
+  let parameter = get_a_b(temp, ice)
   return (parameter.b * v(hum, temp, ice)) / (parameter.a - v(hum, temp, ice))
 }
 
