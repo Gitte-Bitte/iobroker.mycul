@@ -596,9 +596,9 @@ function get_a_b (temp, ice) {
 //Sättigungsdampfdruck
 //SDD(T) = 6.1078 * 10^((a*T)/(b+T))
 function SDD (temp, ice) {
-  parameter = get_a_b(temp, ice)
+  //parameter = get_a_b(temp, ice)
   //  return (6.1078 * 10) ^ ((parameter.a * temp) / (parameter.b + temp))
-  return parameter.a * temp
+  return 4
 }
 
 //DD = Dampfdruck in hPa
