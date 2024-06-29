@@ -634,6 +634,9 @@ function AF_1 (hum, temp, ice) {
   // return 10 ^ ((((5 * mw) / R) * DD(hum, temp, ice)) / TK(temp))
   adapter.log.debug(`mw:` + mw)
   adapter.log.debug(`R:` + R)
+  adapter.log.debug(`hum:` + hum)
+  adapter.log.debug(`temp:` + temp)
+  adapter.log.debug(`ice:` + ice)
   return 6
 }
 
