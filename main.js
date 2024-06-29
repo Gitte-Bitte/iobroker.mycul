@@ -597,7 +597,8 @@ function get_a_b (temp, ice) {
 //SDD(T) = 6.1078 * 10^((a*T)/(b+T))
 function SDD (temp, ice) {
   parameter = get_a_b(temp, ice)
-  return (6.1078 * 10) ^ ((parameter.a * temp) / (parameter.b + temp))
+  //  return (6.1078 * 10) ^ ((parameter.a * temp) / (parameter.b + temp))
+  return parameter.a * temp
 }
 
 //DD = Dampfdruck in hPa
@@ -643,7 +644,7 @@ function AF_1 (hum, temp, ice) {
   adapter.log.debug(`TK:` + TK(temp))
   adapter.log.debug(`a_b:` + JSON.stringify(get_a_b(temp, false)))
 
-  //adapter.log.debug(`SDD:` + SDD(temp, ice))
+  adapter.log.debug(`SDD:` + SDD(temp, ice))
   //adapter.log.debug(`DD:` + DD(hum,temp,ice))
 
   return 6
