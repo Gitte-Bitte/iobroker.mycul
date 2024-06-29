@@ -461,7 +461,7 @@ function connect (callback) {
         let humidity = parseInt(raw[8] + raw[9], 16) & 0x7f
         adapter.log.debug(`humidity:` + humidity)
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
-        let af = absHumidity(temperature, humidity)
+        let af = absHumidity(temperature,humidity)
         adapter.log.debug(`AF:` + af)
         let tp = RHtoDP(temperature, humidity)
         adapter.log.debug(`tp:` + tp)
@@ -475,7 +475,7 @@ function connect (callback) {
         obj.data.temperature = temperature
         obj.data.humidity = humidity
         obj.data.abs_humidity = af
-        obj.data.tp = tp
+        obj.data.tp=tp;
         obj.data.trivia = 'n.a.'
       }
     }
@@ -640,7 +640,7 @@ function absHumidity (Temperatur, humidity) {
 }
 
 function CelsiusToKelvin (T) {
-  return temp + 273.15
+  return T + 273.15
 }
 
 // If started as allInOne/compact mode => return function to create instance
