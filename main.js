@@ -440,6 +440,8 @@ function connect (callback) {
 
     adapter.log.debug(`obj: ${JSON.stringify(obj)}`)
 
+    //s5E580DB3E01C; 416: 9200
+    //0123456789012
     if (raw[0] == 's') {
       if (raw[1] == '5') {
         let id_nr = raw[2] + raw[3]
@@ -456,7 +458,7 @@ function connect (callback) {
         }
         temperature = temperature / 10
         adapter.log.debug(`temperature:` + temperature)
-        let humidity = parseInt(raw[8] + raw[9]) & 0x7f
+        let humidity = (parseInt(raw[8] + raw[9],16) & 0x7F);
         adapter.log.debug(`humidity:` + humidity)
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
       }
