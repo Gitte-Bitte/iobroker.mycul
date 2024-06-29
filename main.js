@@ -436,7 +436,6 @@ function connect (callback) {
     obj.protocol = 'myProt'
     obj.address = 1234
     obj.device = 'device'
-    obj.trivia = ''
     obj.data = {}
 
     adapter.log.debug(`obj: ${JSON.stringify(obj)}`)
@@ -462,14 +461,18 @@ function connect (callback) {
         let humidity = parseInt(raw[8] + raw[9], 16) & 0x7f
         adapter.log.debug(`humidity:` + humidity)
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
+        let af = AF_1(humidity, temperature, false)
+        adapter.log.debug(`AF:` + af)
+
         obj.protocol = 'NS_WC'
         obj.address = id_nr
         obj.device = 'TCM79001'
-        obj.data.batbit = batbit.toString();
-        obj.data.mode = mode.toString();
-        obj.data.channel = channel.toString();
+        obj.data.batbit = batbit.toString()
+        obj.data.mode = mode.toString()
+        obj.data.channel = channel.toString()
         obj.data.temperature = temperature
         obj.data.humidity = humidity
+        obj.data.abs_humidity = af
         obj.data.trivia = 'n.a.'
       }
     }
@@ -570,6 +573,69 @@ function main () {
       }
     )
   })
+}
+
+//Parameter
+function get_a_b (temp, ice) {
+  res = {}
+  if (temp >= 0) {
+    res.a = 7.5
+    res.b = 237.3
+  } else {
+    if (ice) {
+      res.a = 9.5
+      res.b = 265.5
+    } else {
+      res.a = 7.6
+      res.b = 240.7
+    }
+  }
+  return res
+}
+
+//Sättigungsdampfdruck
+//SDD(T) = 6.1078 * 10^((a*T)/(b+T))
+function SDD (temp, ice) {
+  parameter = get_a_b(temp, ice)
+  return (6.1078 * 10) ^ ((parameter.a * temp) / (parameter.b + temp))
+}
+
+//DD = Dampfdruck in hPa
+//DD(r,T) = r/100 * SDD(T)
+function DD (hum, temp, ice) {
+  return (hum / 100) * SDD(temp, ice)
+}
+
+//weiss nicht
+//v(r,T) = log10(DD(r,T)/6.1078)
+function v (hum, temp, ice) {
+  return Math.log10(DD(hum, temp, ice) / 6.1078)
+}
+
+//TD = Taupunkttemperatur in °C
+//TD(r,T) = b*v/(a-v) mit v(r,T) = log10(DD(r,T)/6.1078)
+function TD (hum, temp, ice) {
+  parameter = get_a_b(temp, ice)
+  return (parameter.b * v(hum, temp, ice)) / (parameter.a - v(hum, temp, ice))
+}
+
+function TK (temp) {
+  return temp + 273.15
+}
+
+//R* = 8314.3 J/(kmol*K) (universelle Gaskonstante)
+R = 8314.3
+//mw = 18.016 kg/kmol (Molekulargewicht des Wasserdampfes)
+mw = 18.016
+//AF = absolute Feuchte in g Wasserdampf pro m3 Luft
+//AF(r,TK) = 10^5 * mw/R* * DD(r,T)/TK; AF(TD,TK) = 10^5 * mw/R* * SDD(TD)/TK
+
+function AF_1 (hum, temp, ice) {
+  return 10 ^ ((((5 * mw) / R) * DD(hum, temp, ice)) / TK(temp))
+}
+
+function AF_2 (hum, temp, ice) {
+  10 ^ ((((5 * mw) / R) * SDD(TD(hum, temp, ice))) / TK(temp))
 }
 
 // If started as allInOne/compact mode => return function to create instance
