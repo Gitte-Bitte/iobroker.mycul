@@ -635,11 +635,13 @@ function AF_1 (hum, temp, ice) {
   adapter.log.debug(`mw:` + mw)
   adapter.log.debug(`R:` + R)
   adapter.log.debug(`hum:` + hum)
-  adapter.log.debug(`hum:` + typeof(hum))
+  adapter.log.debug(`hum:` + typeof hum)
   adapter.log.debug(`temp:` + temp)
-  adapter.log.debug(`temp:` +typeof( temp))
+  adapter.log.debug(`temp:` + typeof temp)
   adapter.log.debug(`ice:` + ice)
-  adapter.log.debug(`ice:` + typeof(ice))
+  adapter.log.debug(`ice:` + typeof ice)
+  adapter.log.debug(`TK:` + TK(temp))
+
   return 6
 }
 
