@@ -577,7 +577,7 @@ function main () {
 
 //Parameter
 function get_a_b (temp, ice) {
-  res = {}
+  let res = {}
   if (temp >= 0) {
     res.a = 7.5
     res.b = 237.3
