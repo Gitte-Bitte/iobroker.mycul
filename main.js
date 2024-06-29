@@ -463,6 +463,8 @@ function connect (callback) {
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
         let af = AF_1(humidity, temperature, false)
         adapter.log.debug(`AF:` + af)
+        let af2 = AF_2(humidity, temperature, false)
+        adapter.log.debug(`AF2:` + af2)
         let tp = TD(humidity, temperature, false)
         adapter.log.debug(`TD:` + tp)
 
@@ -594,7 +596,6 @@ function get_a_b (temp, ice) {
   }
   return res
 }
-
 //Sättigungsdampfdruck
 //SDD(T) = 6.1078 * 10^((a*T)/(b+T))
 function SDD (temp, ice) {
@@ -605,7 +606,7 @@ function SDD (temp, ice) {
 //DD = Dampfdruck in hPa
 //DD(r,T) = r/100 * SDD(T)
 function DD (hum, temp, ice) {
-  return (hum / 100) * SDD(temp, ice)
+  return ((hum / 100) * SDD(temp, ice))
 }
 
 //weiss nicht
@@ -618,7 +619,7 @@ function v (hum, temp, ice) {
 //TD(r,T) = b*v/(a-v) mit v(r,T) = log10(DD(r,T)/6.1078)
 function TD (hum, temp, ice) {
   let parameter = get_a_b(temp, ice)
-  return (parameter.b * v(hum, temp, ice)) / (parameter.a - v(hum, temp, ice))
+  return (parameter.b * v(hum, temp, ice) / (parameter.a - v(hum, temp, ice)))
 }
 
 function TK (temp) {
@@ -633,15 +634,11 @@ let mw = 18.016
 //AF(r,TK) = 10^5 * mw/R* * DD(r,T)/TK; AF(TD,TK) = 10^5 * mw/R* * SDD(TD)/TK
 
 function AF_1 (hum, temp, ice) {
-  adapter.log.debug(`hum:` + hum)
-  adapter.log.debug(`temp:` + temp)
-  adapter.log.debug(`SDD:` + SDD(temp, ice))
-  //adapter.log.debug(`DD:` + DD(hum,temp,ice))
-  return ((((10 ^ 5) * mw) / R) * DD(hum, temp, ice)) / TK(temp)
+  return ((10 ^ 5) * (mw/ R) * (DD(hum, temp, ice) / TK(temp)))
 }
 
 function AF_2 (hum, temp, ice) {
-  return ((((10 ^ 5) * mw) / R) * SDD(TD(hum, temp, ice), ice)) / TK(temp)
+  return ((10 ^ 5) * (mw/ R) * (SDD(TD(hum, temp, ice), ice) / TK(temp)))
 }
 
 // If started as allInOne/compact mode => return function to create instance
