@@ -539,10 +539,10 @@ function connect (callback) {
 }
 
 function main () {
-  adapter.getForeignObject('cul.meta.roles', (err, res) => {
+  adapter.getForeignObject('mycul.meta.roles', (err, res) => {
     if (err || !res) {
       adapter.log.error(
-        `Object cul.meta.roles does not exists - please reinstall adapter! (${err})`
+        `Object mycul.meta.roles does not exists - please reinstall adapter! (${err})`
       )
       typeof adapter.terminate === 'function'
         ? adapter.terminate(11)
