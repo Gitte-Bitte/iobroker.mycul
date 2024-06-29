@@ -624,9 +624,9 @@ function TK (temp) {
 }
 
 //R* = 8314.3 J/(kmol*K) (universelle Gaskonstante)
-R = 8314.3
+let R = 8314.3
 //mw = 18.016 kg/kmol (Molekulargewicht des Wasserdampfes)
-mw = 18.016
+let mw = 18.016
 //AF = absolute Feuchte in g Wasserdampf pro m3 Luft
 //AF(r,TK) = 10^5 * mw/R* * DD(r,T)/TK; AF(TD,TK) = 10^5 * mw/R* * SDD(TD)/TK
 
