@@ -436,7 +436,8 @@ function connect (callback) {
     obj.protocol = 'myProt'
     obj.address = 1234
     obj.device = 'device'
-    obj.data = { temperature: 24.5, humidity: 58.5 }
+    obj.trivia=''
+    obj.data = {}
 
     adapter.log.debug(`obj: ${JSON.stringify(obj)}`)
 
@@ -461,6 +462,14 @@ function connect (callback) {
         let humidity = (parseInt(raw[8] + raw[9],16) & 0x7F);
         adapter.log.debug(`humidity:` + humidity)
         //$batbit = ~$batbit & 0x1; # Bat bit umdrehen
+        obj.protocol='NS_WC';
+        obj.adress=id_nr;
+        obj.device='TCM79001';
+        obj.data.batbit=batbit;
+        obj.data.mode=mode;
+        obj.data.channel=channel;
+        obj.data.temperature=temperature;
+        obj.data.humidity=humidity;
       }
     }
 
