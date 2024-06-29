@@ -597,7 +597,7 @@ function get_a_b (temp, ice) {
 //SDD(T) = 6.1078 * 10^((a*T)/(b+T))
 function SDD (temp, ice) {
   let parameter = get_a_b(temp, ice)
-  return (6.1078 * 10) ^ ((parameter.a * temp) / (parameter.b + temp))
+  return (6.1078 * (10 ^ ((parameter.a * temp) / (parameter.b + temp))))
 }
 
 //DD = Dampfdruck in hPa
